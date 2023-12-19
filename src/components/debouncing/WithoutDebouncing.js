@@ -2,25 +2,29 @@ import React, { useCallback, useState, useEffect } from "react";
 import axios from "axios";
 
 // services.js
-const fetchPhotos = async (query) => {
-  const { data } = await axios.get(
-    `https://657fc2666ae0629a3f53998c.mockapi.io/api/curd?name=${query}`
-  );
-  return data;
-};
 
 export default function WithoutDebouncing() {
-  const [photos, setPhotos] = useState([]);
+  const [name, setName] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const fetch = useCallback(async () => {
-    const data = await fetchPhotos(searchTerm);
-    setPhotos(data);
-  }, [searchTerm]);
+  const filterApi = async (query) => {
+    const { data } = await axios.get(
+      `https://657fc2666ae0629a3f53998c.mockapi.io/api/curd?name=${query}`
+    );
+    return data;
+  };
 
   useEffect(() => {
-    fetch();
-  }, [fetch]);
+    try {
+      const fetch = async () => {
+        const data = await filterApi(searchTerm);
+        setName(data);
+      };
+      fetch();
+    } catch (error) {
+      console.log(error);
+    }
+  }, [searchTerm]);
 
   return (
     <div>
@@ -30,7 +34,7 @@ export default function WithoutDebouncing() {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
       <div>
-        {photos?.map((photo) => (
+        {name?.map((photo) => (
           <div>{photo.name}</div>
         ))}
       </div>

@@ -15,15 +15,14 @@ export default function DebouncingWithAPi() {
   };
 
   useEffect(() => {
-    try {
-      const fetch = async () => {
-        const data = await filterApi(searchTerm);
-        setName(data);
-      };
-      fetch();
-    } catch (error) {
-      console.log(error);
-    }
+    const deb = setTimeout(async () => {
+      const data = await filterApi(searchTerm);
+      setName(data);
+    }, 3000);
+
+    return () => {
+      clearTimeout(deb);
+    };
   }, [searchTerm]);
 
   return (
