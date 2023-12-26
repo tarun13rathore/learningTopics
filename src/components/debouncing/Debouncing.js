@@ -3,16 +3,10 @@ import React, { useEffect, useState } from "react";
 const Debouncing = () => {
   const [inputValue, setInputValue] = useState("");
 
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  };
-
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      // Perform the action after the delay
       console.log("Delayed input value:", inputValue);
     }, 300);
-    // Cleanup function to clear the timeout when the component unmounts or the dependency changes
     return () => {
       clearTimeout(timeoutId);
     };
@@ -24,7 +18,7 @@ const Debouncing = () => {
       <input
         type="text"
         value={inputValue}
-        onChange={handleInputChange}
+        onChange={(e) => setInputValue(e.target.value)}
         placeholder="Type something..."
       />
     </>

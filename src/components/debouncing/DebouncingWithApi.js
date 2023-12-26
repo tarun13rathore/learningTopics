@@ -18,7 +18,7 @@ export default function DebouncingWithAPi() {
     const deb = setTimeout(async () => {
       const data = await filterApi(searchTerm);
       setName(data);
-    }, 3000);
+    }, 300);
 
     return () => {
       clearTimeout(deb);
