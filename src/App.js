@@ -3,6 +3,7 @@
 // import Reff2 from "./components/useStateREff/Reff2";
 import Parent from "./components/childToparent/Parent";
 import Normal from "./components/customHooks/Normal";
+import AbortExp from "./components/debouncing/AbortExp";
 import Debouncing from "./components/debouncing/Debouncing";
 // import DiffUseReffanduseState from "./components/useStateREff/DiffUseReffanduseState";
 
@@ -27,7 +28,8 @@ function App() {
       {/* <DebouncingWithApi /> */}
       {/* <Timer /> */}
       {/* <Normal /> */}
-      <Parent />
+      {/* <Parent /> */}
+      <AbortExp />
     </div>
   );
 }

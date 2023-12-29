@@ -1,27 +1,45 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 // services.js
 
-export default function DebouncingWithAPi() {
+export default function AbortExp() {
   const [name, setName] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const abortController = new AbortController();
 
   const filterApi = async (query) => {
-    const { data } = await axios.get(
-      `https://657fc2666ae0629a3f53998c.mockapi.io/api/curd?name=${query}`
-    );
-    return data;
+    try {
+      const { data } = await axios.get(
+        `https://657fc2666ae0629a3f53998c.mockapi.io/api/curd?name=${query}`,
+        { signal: abortController.signal }
+      );
+      return data;
+    } catch (error) {
+      // Handle errors if needed
+      console.error("API request error:", error.message);
+      return [];
+    }
   };
 
   useEffect(() => {
-    const deb = setTimeout(async () => {
-      const data = await filterApi(searchTerm);
-      setName(data);
-    }, 300);
+    const fetchData = async () => {
+      try {
+        const data = await filterApi(searchTerm);
+        setName(data);
+      } catch (error) {
+        // Handle errors if needed
+        console.error("Error fetching data:", error.message);
+      }
+    };
+
+    const deb = setTimeout(() => {
+      fetchData();
+    }, 3000);
 
     return () => {
       clearTimeout(deb);
+      abortController.abort(); // Cancel the API request when the component is unmounted or the search term changes
     };
   }, [searchTerm]);
 
