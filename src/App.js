@@ -13,6 +13,7 @@ import MainComment from "./components/nestedComment/MainComment";
 import FolderStruture from "./components/nestedFolder/FolderStruture";
 import CheckUI from "./components/tailwindCSS/CheckUI";
 import Timer from "./components/timer/Timer";
+import Fun from "./Fun";
 
 function App() {
   return (
@@ -29,7 +30,8 @@ function App() {
       {/* <Timer /> */}
       {/* <Normal /> */}
       {/* <Parent /> */}
-      <AbortExp />
+      {/* <AbortExp /> */}
+      <Fun />
     </div>
   );
 }
