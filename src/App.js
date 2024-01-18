@@ -17,6 +17,7 @@ import Timer from "./components/timer/Timer";
 import Main2 from "./components/customTable/Main";
 import Fun from "./Fun";
 import Pagination from "./components/pagination/Pagination";
+import Todo from "./components/todo/Todo";
 
 function App() {
   return (
@@ -36,7 +37,8 @@ function App() {
       {/* <AbortExp /> */}
       {/* <Fun /> */}
       {/* <Pagination /> */}
-      <Main2 />
+      {/* <Main2 /> */}
+      <Todo />
       {/* ------------------ */}
       {/* <Main /> */}
     </div>
