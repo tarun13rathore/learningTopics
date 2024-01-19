@@ -18,6 +18,7 @@ import Main2 from "./components/customTable/Main";
 import Fun from "./Fun";
 import Pagination from "./components/pagination/Pagination";
 import Todo from "./components/todo/Todo";
+import SelectUse from "./components/multiSelect/SelectUse";
 
 function App() {
   return (
@@ -38,7 +39,8 @@ function App() {
       {/* <Fun /> */}
       {/* <Pagination /> */}
       {/* <Main2 /> */}
-      <Todo />
+      {/* <Todo /> */}
+      <SelectUse />
       {/* ------------------ */}
       {/* <Main /> */}
     </div>
