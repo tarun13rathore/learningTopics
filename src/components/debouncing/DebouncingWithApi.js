@@ -6,12 +6,19 @@ import axios from "axios";
 export default function DebouncingWithAPi() {
   const [name, setName] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [error, setError] = useState(null);
 
   const filterApi = async (query) => {
-    const { data } = await axios.get(
-      `https://657fc2666ae0629a3f53998c.mockapi.io/api/curd?name=${query}`
-    );
-    return data;
+    try {
+      const { data } = await axios.get(
+        `https://657fc2666ae0629a3f53998c.mockapi.io/api/curd?name=${query}`
+      );
+      setError(null);
+      return data;
+    } catch (error) {
+      setError("Data Not Found");
+      return [];
+    }
   };
 
   useEffect(() => {
@@ -54,6 +61,7 @@ export default function DebouncingWithAPi() {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <div>
+            {error && <p style={{ color: "red" }}>{error}</p>}
             {name?.map((i) => (
               <div
                 key={i.id} // Add a unique key for each card

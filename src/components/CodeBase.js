@@ -94,7 +94,7 @@ console.log(rotate);
 
 // ------------------------
 
-const arr = [1, 2, 3, 4, 5, 6];
+/*const arr = [1, 2, 3, 4, 5, 6];
 
 function pairMatch(arr) {
   let target = 9;
@@ -118,3 +118,46 @@ function pairMatch(arr) {
 }
 
 console.log(pairMatch(arr));
+*/
+
+// --------------------
+
+// unique object
+
+/* const obj =[
+  {name:"abc",slug:"op1"},
+  {name:"abc2",slug:"op1"},
+  {name:"abc3",slug:"op2"},
+  {name:"abc4",slug:"op3"},
+  {name:"abc5",slug:"op4"},
+  ]
+  
+  let newObj={};
+  obj.map((i)=>{
+    const {name,slug} = i;
+    if(!newObj[slug]){
+      newObj[slug] = {name,slug}
+    }
+  })
+  
+  console.log(newObj)
+
+  */
+
+// -------------------------
+
+//all 0 put into end
+
+/*const arr =[1,7,0,4,5,0,1,7,0,4];
+
+let count =0;
+for(let i in arr){
+  if(arr[i] !== 0){
+    [arr[count],arr[i]] = [arr[i],arr[count]];
+    count++
+  }
+}
+
+console.log(arr)
+
+*/
